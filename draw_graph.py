@@ -15,9 +15,9 @@ dep=[0 for i in range(0,n+1)]
 fig=plt.figure()
 
 for i in range(0,m):
-    x,y=map(int,input().split())
-    assert(x!=y)
-    g[x].append(y),g[y].append(x)
+	x,y=map(int,input().split())
+	assert(x!=y)
+	g[x].append(y),g[y].append(x)
 
 for i in range(1,n+1):
 	g[i]=set(g[i])
@@ -43,27 +43,27 @@ def bfs():
 	#print("q:"+str(q))
 
 def dfs(k1,k2):
-    isleaf=1
-    dep[k1]=dep[k2]+1
-    for j in g[k1]:
-        if pre[j]==k1:
-            isleaf=0
-            posy[j]=posy[k1]-100
-            dfs(j,k1)
-            w[k1]+=w[j]
-    if isleaf:
-        w[k1]=50
+	isleaf=1
+	dep[k1]=dep[k2]+1
+	for j in g[k1]:
+		if pre[j]==k1:
+			isleaf=0
+			posy[j]=posy[k1]-100
+			dfs(j,k1)
+			w[k1]+=w[j]
+	if isleaf:
+		w[k1]=50
 
 def dfs2(k1,k2):
-    plt.text(posx[k1],posy[k1],str(k1))
-    lst=posx[k1]-w[k1]/2;
-    for j in g[k1]:
-        if pre[j]==k1:
-            posx[j]=lst+w[j]/2
-            dfs2(j,k1)
-            #print([[posx[k1],posx[j]],[posy[k1],posy[j]]])
-            plt.plot([posx[k1],posx[j]],[posy[k1],posy[j]])
-            lst=lst+w[j]
+	plt.text(posx[k1],posy[k1],str(k1))
+	lst=posx[k1]-w[k1]/2;
+	for j in g[k1]:
+		if pre[j]==k1:
+			posx[j]=lst+w[j]/2
+			dfs2(j,k1)
+			#print([[posx[k1],posx[j]],[posy[k1],posy[j]]])
+			plt.plot([posx[k1],posx[j]],[posy[k1],posy[j]])
+			lst=lst+w[j]
 
 def dfs3(k1,k2):
 	for j in g[k1]:
